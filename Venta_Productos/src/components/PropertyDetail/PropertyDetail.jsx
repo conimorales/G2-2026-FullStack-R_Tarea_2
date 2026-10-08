@@ -11,8 +11,6 @@ const formatoFecha = new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: '
 
 function PropertyDetail() {
   const { id } = useParams()
-  // Antes: PROPIEDADES.find((p) => String(p.id) === id)
-  // Ahora: le pedimos a la API el producto con ese id
   const { data: producto, cargando, error, reintentar } = useFetch(urlProducto(id))
 
   if (cargando) {
