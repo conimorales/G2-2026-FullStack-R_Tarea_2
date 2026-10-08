@@ -1,0 +1,367 @@
+/* ---------- Header ---------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffc2d1;
+    border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .site-header {
+    background-color: #3a2430;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.navbar-brand,
+.brand-name,
+.brand-sub {
+    color: var(--color-ink) !important;
+    text-decoration: none;
+}
+
+.navbar-brand:hover,
+.navbar-brand:hover .brand-name,
+.navbar-brand:hover .brand-sub {
+    color: #e85179 !important;
+}
+
+.brand-sub {
+    font-size: 0.7em;
+    letter-spacing: 1px;
+}
+
+
+/* Botón "☰ Menú" */
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--fuente-titulo);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.menu-btn i {
+    font-size: 22px;
+}
+
+.menu-btn:hover {
+    background: rgba(251, 111, 146, 0.18);
+}
+
+
+/* Íconos de la derecha (Contacto, tema) */
+
+.header-acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.header-icono {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: var(--color-ink);
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.header-icono i {
+    font-size: 20px;
+}
+
+.header-icono:hover,
+.header-icono.active {
+    background: rgba(251, 111, 146, 0.18);
+    color: var(--color-ink);
+}
+
+
+/* ---------- Buscador ---------- */
+
+.search-pill {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 640px;
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 4px 4px 4px 18px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.search-pill-field {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    color: var(--color-text);
+    padding: 8px;
+    min-width: 0;
+}
+
+.search-pill-field::placeholder {
+    color: var(--color-muted);
+}
+
+.search-pill-divider {
+    width: 1px;
+    height: 22px;
+    background: var(--color-border);
+    flex: 0 0 auto;
+}
+
+.search-pill-btn {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: #fb6f92;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.search-pill-btn:hover {
+    background: #e85179;
+}
+
+@media (max-width: 768px) {
+    .header-row {
+        flex-wrap: wrap;
+        gap: 4px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+    }
+    .menu-btn {
+        order: -1;
+        /* el ☰ pasa antes del logo */
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        justify-content: center;
+    }
+    .menu-btn span,
+    .header-icono span {
+        display: none;
+    }
+    .header-icono {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        justify-content: center;
+    }
+    .header-row>.flex-grow-1 {
+        order: 3;
+        flex-basis: 100%;
+        margin: 6px 0 0 !important;
+    }
+}
+
+
+/* ---------- Menú lateral ---------- */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.menu-drawer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: min(720px, 100%);
+    background: var(--color-bg-card);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+    animation: menuEntra 0.25s ease-out;
+}
+
+@keyframes menuEntra {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-drawer {
+        animation: none;
+    }
+}
+
+.menu-col {
+    overflow-y: auto;
+}
+
+.menu-col--grupos {
+    width: 340px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--color-border);
+}
+
+.menu-col--sub {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--color-surface);
+}
+
+.menu-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.menu-saludo {
+    font-family: var(--fuente-titulo);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-ink);
+}
+
+.menu-cerrar {
+    border: none;
+    background: none;
+    font-size: 22px;
+    color: var(--color-ink);
+}
+
+.menu-lista {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+}
+
+
+/* Cada fila del menú: "Mujer  >" */
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+    background: none;
+    color: var(--color-ink);
+    font-size: 17px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background: var(--color-surface);
+    color: var(--color-ink);
+}
+
+
+/* El grupo seleccionado: barra de color a la izquierda, como Falabella */
+
+.menu-item--activo {
+    background: var(--color-surface);
+    border-left-color: #fb6f92;
+    font-weight: 700;
+}
+
+.menu-item i {
+    font-size: 13px;
+    color: var(--color-muted);
+}
+
+.menu-item--activo i {
+    color: #fb6f92;
+}
+
+.menu-badge {
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--color-ink);
+    color: var(--color-bg-card);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.menu-sub-titulo {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.menu-sub {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-sub a {
+    display: block;
+    padding: 8px 0;
+    color: var(--color-text);
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.menu-sub a:hover {
+    color: #e85179;
+    text-decoration: underline;
+}
+
+
+/* Las subcategorías "de celular" se esconden en escritorio */
+
+.menu-sub--movil {
+    display: none;
+    padding: 4px 16px 12px 24px;
+}
+
+@media (max-width: 768px) {
+    .menu-drawer {
+        width: min(400px, 92%);
+    }
+    .menu-col--grupos {
+        width: 100%;
+        border-right: none;
+    }
+    .menu-col--sub {
+        display: none;
+    }
+    .menu-sub--movil {
+        display: block;
+    }
+}
