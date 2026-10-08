@@ -2,7 +2,8 @@ import { useSearchParams } from 'react-router-dom'
 import { useFetch } from '../../hooks/useFetch'
 import { urlProductos, PRODUCTOS_POR_PAGINA } from '../../data/api'
 import { ORDENES, nombreCategoria } from '../../data/productos'
-import { Cargando, ErrorCarga } from '../UI/Estados'
+import Loader from '../UI/Loader'
+import ErrorMessage from '../UI/ErrorMessage'
 import SearchForm from '../Home/SearchForm'
 import PropertyCard from '../Home/PropertyCard'
 import Pagination from './Pagination'
@@ -67,9 +68,9 @@ function Products() {
 
         <div className="mt-4">
           {cargando ? (
-            <Cargando />
+            <Loader />
           ) : error ? (
-            <ErrorCarga onReintentar={reintentar} />
+            <ErrorMessage onReintentar={reintentar} />
           ) : productos.length === 0 ? (
             <p className="text-muted">
               {busqueda

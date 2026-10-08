@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useFetch } from '../../hooks/useFetch'
 import { urlProductos } from '../../data/api'
-import { Cargando, ErrorCarga } from '../UI/Estados'
+import Loader from '../UI/Loader'
+import ErrorMessage from '../UI/ErrorMessage'
 import SearchForm from './SearchForm'
 import PropertyCard from './PropertyCard'
 // import HowItWorks from './HowItWorks'
@@ -49,9 +50,9 @@ function Home() {
           <h2 className="h5 mb-3">Productos mejor valorados</h2>
 
           {cargando ? (
-            <Cargando />
+            <Loader />
           ) : error ? (
-            <ErrorCarga onReintentar={reintentar} />
+            <ErrorMessage onReintentar={reintentar} />
           ) : destacados.length === 0 ? (
             <p className="text-muted">No hay productos en esta categoría por ahora.</p>
           ) : (

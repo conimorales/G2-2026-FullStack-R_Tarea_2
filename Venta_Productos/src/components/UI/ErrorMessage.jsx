@@ -1,13 +1,4 @@
-export function Cargando({ texto = 'Cargando productos…' }) {
-  return (
-    <div className="text-center py-5" role="status">
-      <div className="spinner-border text-secondary mb-2" aria-hidden="true"></div>
-      <p className="text-muted mb-0">{texto}</p>
-    </div>
-  )
-}
-
-export function ErrorCarga({ texto = 'No pudimos cargar los productos.', onReintentar }) {
+function ErrorMessage({ texto = 'No pudimos cargar los productos.', onReintentar }) {
   return (
     <div className="alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-2" role="alert">
       <span>
@@ -22,3 +13,5 @@ export function ErrorCarga({ texto = 'No pudimos cargar los productos.', onReint
     </div>
   )
 }
+
+export default ErrorMessage
