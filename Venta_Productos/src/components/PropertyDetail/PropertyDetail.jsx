@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useFetch } from '../../hooks/useFetch'
 import { urlProducto } from '../../data/api'
 import { nombreCategoria, formatearPrecio, precioFinal, tieneOferta } from '../../data/productos'
-import { Cargando, ErrorCarga } from '../UI/Estados'
+import Loader from '../UI/Loader'
+import ErrorMessage from '../UI/ErrorMessage'
 import PhotoGallery from './PhotoGallery'
 import { armarCaracteristicas, armarCondiciones } from './helpers'
 import './PropertyDetail.css'
@@ -11,8 +12,6 @@ const formatoFecha = new Intl.DateTimeFormat('es-CL', { day: 'numeric', month: '
 
 function PropertyDetail() {
   const { id } = useParams()
-  // Antes: PROPIEDADES.find((p) => String(p.id) === id)
-  // Ahora: le pedimos a la API el producto con ese id
   const { data: producto, cargando, error, reintentar } = useFetch(urlProducto(id))
 
   if (cargando) {
@@ -36,7 +35,7 @@ function PropertyDetail() {
   if (error) {
     return (
       <div className="container py-5">
-        <ErrorCarga texto="No pudimos cargar este producto." onReintentar={reintentar} />
+        <ErrorMessage texto="No pudimos cargar este producto." onReintentar={reintentar} />
       </div>
     )
   }
